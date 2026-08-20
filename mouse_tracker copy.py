@@ -236,14 +236,26 @@ def plot_trajectory_plotly():
         plot_bgcolor='#1E1E1E',    # 内部绘图区域的背景色（高级深灰）     
     )
     import os
-    # 定义子文件夹名称（可自定义）
-    output_dir = "output"   # 例如保存到当前目录下的 output 文件夹
 
-    # 创建文件夹（如果不存在）
+    # 定义子文件夹
+    output_dir = "output"
     os.makedirs(output_dir, exist_ok=True)
+    # 基础文件名（不含数字后缀）
+    base_name = "mouse_trajectory"
+    extension = ".html"
 
-    # 构建完整文件路径
-    file_path = os.path.join(output_dir, "mouse_trajectory.html")
+    # 生成不重复的文件名
+    counter = 0
+    while True:
+        if counter == 0:
+            filename = f"{base_name}{extension}"
+        else:
+            filename = f"{base_name}_{counter}{extension}"
+        
+        file_path = os.path.join(output_dir, filename)
+        if not os.path.exists(file_path):
+            break
+        counter += 1
 
     # 生成并自动打开
     import plotly.offline as pyo
