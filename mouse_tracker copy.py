@@ -235,8 +235,20 @@ def plot_trajectory_plotly():
         paper_bgcolor='#1E1E1E',   # 整个画板的背景色（高级深灰）
         plot_bgcolor='#1E1E1E',    # 内部绘图区域的背景色（高级深灰）     
     )
-    
-    fig.show()
+    import os
+    # 定义子文件夹名称（可自定义）
+    output_dir = "output"   # 例如保存到当前目录下的 output 文件夹
+
+    # 创建文件夹（如果不存在）
+    os.makedirs(output_dir, exist_ok=True)
+
+    # 构建完整文件路径
+    file_path = os.path.join(output_dir, "mouse_trajectory.html")
+
+    # 生成并自动打开
+    import plotly.offline as pyo
+    pyo.plot(fig, filename=file_path, auto_open=True)
+    # fig.show()
 
 # ==============================================================================
 #  基础底层：Windows 消息泵创建
