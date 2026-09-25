@@ -1,5 +1,6 @@
-dist/
+# dist/
 build/
 output/
 dks_batch_results.csv
 dks_test_all.csv
+mouse_log.txt
