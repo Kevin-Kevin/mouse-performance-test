@@ -286,6 +286,7 @@ class KeyStateTracker:
                 if vkey in [VK_A, VK_D]:
                     if is_press:
                         self.key_states[vkey]['pressed_time'] = timestamp
+                        self.key_states[vkey]['released_time'] = None  # 新周期开始，清空旧松开时间
                         self.key_states[vkey]['last_state'] = 'pressed'
                     elif is_release:
                         self.key_states[vkey]['released_time'] = timestamp
