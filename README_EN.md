@@ -1,110 +1,45 @@
-# Mouse Performance Test
+# Mouse Performance Testing Tools
 
 [中文](README.md) | **English**
 
-A Windows mouse and keyboard performance testing project. It reads low-level Raw Input events, records mouse movement or DKS keyboard timing data, and generates charts or reports for analysis.
+Screenshots of https://github.com/Nuitfanee/ClickSyncMouseTester/tree/main appear in this README only as examples for explaining mouse performance, because the original mouse is no longer in my possession. Both software projects are open source and free, created for the public good, and there is no plagiarism. Similar functionality raises no legal or ethical concern when it is not for profit, and this kind of feature has long circulated online; it is not exclusive to ClickSyncMouseTester or this open-source project.
 
-## Features
+## Mouse Performance Testing Tool
 
-- Capture mouse movement through the Windows Raw Input API
-- Record per-event X/Y displacement and high-resolution timestamps
-- Draw mouse trajectories and per-movement displacement charts
-- Export mouse movement logs
-- Measure DKS (Dual Key Switch) behavior and event timing
+It obtains the mouse's raw input from the computer to generate images, displaying the mouse trajectory, per-movement displacement curve, and report-rate data.
 
-## Project Files
+Liekong F1 V3, wireless mode
 
-| File | Purpose |
-|---|---|
-| `mouse_tracker.py` | Basic mouse Raw Input capture with Matplotlib charts |
-| `mouse_tracker copy.py` | Mouse capture with Plotly charts |
-| `mouse_tracker change write.py` | Mouse capture that writes a log and then generates a Plotly chart |
-| `mouse_tracker change write numphy.py` | Memory-efficient mouse capture using the `array` module |
-| `dks_time.py` | DKS keyboard timing test and CSV report generator |
-| `output/` | Generated HTML chart examples |
-| `pic/` | Mouse test screenshots |
+<img src="pic/烈空f1 v3 2.png" alt="Liekong F1 V3 2">
 
-Some files above are variants or historical implementations. `mouse_tracker.py` is the simplest mouse capture starting point.
+ATK Dragonfly A9 Ultimate, wireless mode
 
-## Requirements
+<img src="pic/ATK 蜻蜓A9 ultimate.png" alt="ATK Dragonfly A9 Ultimate">
 
-- Windows
-- Python 3
-- A mouse connected to the computer
-- Administrator privileges are usually not required
+## How to Evaluate Your Mouse's Performance
 
-Install the packages used by the mouse and chart scripts:
+The main thing to look at is the mouse's per-movement displacement.
 
-```powershell
-pip install pywin32 matplotlib plotly
-```
+The following is a circular-movement per-displacement graph for the VXE Dragonfly V3 Pro in wireless mode. This mouse uses a StarFlash main controller and a 3395 sensor.
 
-The DKS timing script only uses Python standard-library modules.
+<img src="pic/鼠标轨迹/vxe 蜻蜓v3pro.png" alt="VXE Dragonfly V3 Pro">
 
-## Usage
+Points with large drifts indicate that the mouse has dropped frames. This suggests that the controller's wireless transmission or interference resistance is mediocre.
 
-### Mouse trajectory test
+<img src="pic/鼠标轨迹/vxe 蜻蜓v3pro 标记丢帧.png" alt="VXE Dragonfly V3 Pro - dropped frames marked">
 
-Run the basic implementation:
+If the per-movement displacement oscillates back and forth by only a small amount, it means the mouse's responsiveness is not ideal (which is largely related to sensor tuning). Even when used through a wired connection, the per-movement displacement can still fluctuate within a small range.
 
-```powershell
-python mouse_tracker.py
-```
+<img src="pic/鼠标轨迹/vxe 蜻蜓v3pro 标记不跟手.png" alt="VXE Dragonfly V3 Pro - poor responsiveness marked">
 
-1. Activate the blank window that appears.
-2. Hold the left mouse button.
-3. Move the mouse quickly across the desktop.
-4. Release the left mouse button.
+The performance of a wireless mouse depends on both responsiveness and interference resistance. If interference resistance is poor, the pointer may jump around while moving, suddenly hopping from one point to another (frame dropping). If responsiveness is poor, the mouse feels floaty.
 
-The window closes and Matplotlib opens a chart containing:
+The following is a per-movement displacement graph for the ATK Dragonfly A9 Master Edition in wired mode.
 
-- A cumulative mouse trajectory
-- Per-event X and Y displacement
-- High-resolution timestamps
+<img src="pic/鼠标轨迹/atk蜻蜓a9大师版有线.png" alt="ATK Dragonfly A9 Master Edition, wired mode">
 
-Hover over points for details. Use the mouse wheel to zoom the chart.
+There are no drift points because it is in wired mode, so it will not drop frames like wireless mode.
 
-The alternate Plotly-based scripts support left/right mouse button workflow variants. Check the console instructions printed by the script you run.
+The per-movement displacement does not fluctuate within a small range, indicating very good responsiveness.
 
-### DKS keyboard timing test
-
-Run:
-
-```powershell
-python dks_time.py
-```
-
-Activate the test window, then press and release `A` or `D`. The script maps these keys to `F9` and `F8` by default. Edit `KEY_MAP` near the top of `dks_time.py` to change the mapping.
-
-At exit, the script prints statistics and generates report and CSV files.
-
-## How to interpret mouse results
-
-### Per-movement displacement
-
-This chart shows each reported mouse movement rather than only the final cursor position.
-
-- Large sudden jumps or drift indicate dropped frames, weak wireless transmission, or radio interference.
-- Small repeated oscillations indicate poor tracking consistency or sensor tuning. They may remain visible in wired mode.
-- A stable curve with few small oscillations indicates good following behavior.
-
-Wireless mouse performance depends on both:
-
-- **Tracking consistency:** how stable the pointer feels while moving.
-- **Interference resistance:** whether frames are suddenly skipped or the pointer jumps.
-
-Example screenshots are available in [`pic/`](pic/).
-
-## Screenshots
-
-### Mouse trajectory and Raw Input test
-
-<img src="pic/烈空f1 v3 2.png" alt="Liekong F1 V3 in wireless mode">
-
-<img src="pic/ATK 蜻蜓A9 ultimate.png" alt="ATK A9 Ultimate in wireless mode">
-
-## Notes
-
-- Raw Input movement values are reported by Windows and the mouse/device driver; they are not a complete or independent measurement of sensor hardware quality.
-- Test the mouse in both wired and wireless modes and keep the same surface, DPI, polling rate, movement speed, and environment for fair comparisons.
-- The project is intended for technical evaluation and education. It is not affiliated with any mouse manufacturer.
+I personally still highly recommend ATK mice. They offer many model choices and comfortable designs, and their performance is among the top domestic tier.
