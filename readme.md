@@ -1,3 +1,5 @@
+**[English](README_EN.md) | 中文**
+
 readme页面里出现了https://github.com/Nuitfanee/ClickSyncMouseTester/tree/main 这个项目的截图，只是为了举例描述鼠标性能，因为原鼠标已经不在我手里了，两个软件本身都是开源免费的，公益向，根本不存在抄袭。功能相似没有任何法律和道德上的问题，因为不以盈利为目的，而且这种功能早就在网上流传，并非ClickSyncMouseTester或者我这个开源项目独占。
 
 
@@ -47,7 +49,6 @@ ATK 蜻蜓A9 ultimate 无线模式
 单次位移不会在小范围波动，说明跟手性非常好
 
 我个人还是非常推荐atk的鼠标的，模具选择多，而且模具用起来很舒服，性能也是国产第一梯队
-
 
 
 
